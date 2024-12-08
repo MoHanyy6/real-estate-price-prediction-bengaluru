@@ -1,36 +1,59 @@
+# Real Estate Price Prediction in Bengaluru
+
 ## Dataset
 The dataset used in this project is publicly available. You can download it from the following link:
 
 [Kaggle - Bengaluru Housing Data](https://www.kaggle.com/Bengaluru_House_Data.csv)
 
-# Dataset Overview
-The dataset used in this project focuses on real-world housing prices in Bengaluru, India. It was selected for its complexity, providing an opportunity to apply data science techniques such as data cleaning, exploration, and feature engineering. The dataset presented challenges, including missing values, logical errors, and outliers, making it ideal for testing real-world data science workflows.
+---
 
-# real-estate-price-prediction-bengaluru
-A machine learning project predicting Bengaluru housing prices using Python. Includes data cleaning, EDA, feature engineering, dimensionality reduction, one-hot encoding, and regression modeling. Techniques: K-Fold, GridSearchCV, ShuffleSplit. Libraries: NumPy, pandas, matplotlib, scikit-learn.
+## Dataset Overview
+This project utilizes a real-world dataset focusing on housing prices in Bengaluru, India. The dataset was selected due to its complexity, offering a chance to apply a variety of data science techniques such as data cleaning, exploratory data analysis, and feature engineering. The dataset posed challenges like missing values, logical errors, and outliers, which made it ideal for simulating real-world data science workflows.
+
+---
+
+## Project Overview
+This project aims to predict housing prices in Bengaluru using machine learning techniques. The workflow includes data cleaning, exploratory data analysis, feature engineering, and regression modeling. The focus is on building a robust model while addressing the challenges presented by the dataset.
+
+### Key Features:
+- **Techniques:** Dimensionality reduction, one-hot encoding, K-Fold cross-validation, GridSearchCV, ShuffleSplit.
+- **Libraries Used:** NumPy, pandas, matplotlib, scikit-learn.
+
+---
 
 ## Key Steps
-1. **Exploratory Data Analysis (EDA)**.
-  i begin by exploring the structure,summary and analyze dataset features of the dataset to understand its contents and identify potential issues.
-  i made a function to visualize to me "Total square feet " by "location" by passing to it dataset and location
-3. **Data Cleaning**: 
-  i begin with removing irrelevant columns does not that are not required to build our model and does not directly impact the model’s algorithms.
-  i remove irrelevant rows with missing values that could affect the quality of the data. to ensure that data is clean and relevant for analysis and modeling phases
-  i made a function to aplly it on column "total_sqft" because there is some values in form of range so this function get average for this range rather than renoving these record.
-  i'll remove outliers by ensuring each bedroom has at least 300 sqft, as typically a 2 BHK apartment should be a minimum of 600 sqft. i make this assumption
-  i made a function that remove outlier based on its variance to remove outliers on a new columns that i made "price_per_square_feet"
-  i observed that on same location and tsqf the 2 BHK is greater than 3 BHK so it is not logic,so i made a function called remove_bhk_outlier
-  i removed outlier on apartment that has baths more than rooms.
-5. **Feature Engineering**: Create new features
-  Add new feature(integer) for bhk(Bedrooms,hall,kitchen),because the existing fetaure have had a varies syntax so i extract the number only from this columns and put in new feature called(BHK)
-  Add new feature called "price per square feet" for some analysis will help me to remove logical errors
-  **Dimensionality Reduction:** on "location"Any location having less than 10 data points should be tagged as "other" location. it will help me to reduce number of columns when making dummy columns
-   
-6. **Modeling**: 
-   train regression models using scikit-learn.
-   i used a regression model in this project because the goal is to predict continuous values
-   during exploratory data analysis, i examined the nature of the target variable (housing price) and the relationship between it and the other features (like area, location,etc.).
-8. **Model Evaluation**: .
-   lr_model.score(X_test,y_test)
-   Optimize model using K-Fold cross-validation and GridSearchCV to make descison which one is best for this situation i maje grid search between(linear,lasso,decisiontree)
-10. **Prediction**: Predict housing prices
+
+### 1. **Exploratory Data Analysis (EDA)**
+- Examined the structure and summary of the dataset.
+- Analyzed dataset features to understand contents and identify potential issues.
+- Visualized relationships between key features, such as total square feet and location, to gain insights.
+
+### 2. **Data Cleaning**
+- Removed irrelevant columns and rows with significant missing values to maintain data quality.
+- Addressed inconsistencies in the `total_sqft` column by converting range values into averages rather than discarding them.
+- Eliminated outliers based on logical assumptions:
+  - Ensured each bedroom had at least 300 square feet (e.g., 2 BHK apartments require a minimum of 600 square feet).
+  - Created and utilized a new feature, `price_per_square_feet`, to identify and remove rows with abnormal price variances.
+  - Filtered out rows where 2 BHK prices exceeded 3 BHK prices in the same location.
+  - Removed rows where bathrooms exceeded the number of bedrooms by more than one.
+
+### 3. **Feature Engineering**
+- Added new features:
+  - `BHK` (Bedrooms, Hall, Kitchen): Extracted integer values from the `size` column.
+  - `price_per_square_feet`: Calculated to assist in identifying and handling outliers.
+- Applied dimensionality reduction on the `location` column:
+  - Grouped locations with fewer than 10 data points into a single category labeled as "other."
+
+### 4. **Modeling**
+- Trained regression models to predict housing prices based on the cleaned and processed dataset.
+- Selected regression because the target variable (price) is continuous.
+- Explored multiple regression models, including linear regression, lasso regression, and decision tree regression.
+- Evaluated models using K-Fold cross-validation and optimized hyperparameters with GridSearchCV.
+
+### 5. **Prediction**
+- Created a function to predict housing prices based on input features such as location, total square feet, number of bathrooms, and BHK.
+
+---
+
+## Final Thoughts
+This project showcases the end-to-end process of handling a real-world dataset, from cleaning and exploring the data to building and evaluating machine learning models. It highlights the practical challenges of working with real-world data and provides insights into developing solutions for robust predictive modeling.
